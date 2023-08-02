@@ -1,10 +1,14 @@
 FactoryBot.define do
   factory :subscription do
-    title { "MyString" }
-    price { 1.5 }
-    status { false }
+    transient do
+      customer { create(:customer) }
+      tea { create(:tea) }
+    end
+    title { tea.title }
+    price { 3.5 }
+    status { true }
     frequency { 1 }
-    customer { nil }
-    tea { nil }
+    customer { customer }
+    tea { tea }
   end
 end
