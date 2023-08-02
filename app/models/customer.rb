@@ -1,5 +1,4 @@
 class Customer < ApplicationRecord
-  validates_with EmailAddress::ActiveRecordValidator, field: :email
   validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name, :address, :password_digest, :email
   
