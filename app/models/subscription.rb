@@ -19,5 +19,4 @@ class Subscription < ApplicationRecord
     when 'seasonal' then 16.52
     end
   end
-
 end
