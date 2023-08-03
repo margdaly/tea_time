@@ -111,6 +111,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -256,6 +258,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   jbuilder
+  jsonapi-serializer
   pg (~> 1.1)
   pry
   puma (~> 5.0)
