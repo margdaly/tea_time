@@ -1,24 +1,21 @@
-# README
+# Tea Time ☕
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Documentation 
 
-Things you may want to cover:
+Here you have documentation of all available API functions. To get started you can make sample request
 
-* Ruby version
 
-* System dependencies
+### Subscribe to Tea Subscription
+**create a new subscription**
 
-* Configuration
+`POST http://localhost3000/api/v0/customers/{id}/subscribe`
 
-* Database creation
+**Headers**
+Response Headers:
+  - `Content-Type: application/json`
 
-* Database initialization
+**Parameters**
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Name | Type | Example | Description |
+| ----------- | ----------- | ----------- | ----------- | 
+| **id** | number| | 3 | customer's id |
