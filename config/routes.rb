@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v0 do
-      resources :customers, only: %i[show] do
-        post '/subscribe', to: 'subscriptions#create'
-        patch '/cancel', to: 'subscriptions#update'
-      end
+      post 'sessions/create'
+      delete 'sessions/destroy'
+      resources :customers, only: [:show]
+      # get '/customer/:id', to: 'customers#show'
+      post '/customer/subscribe', to: 'subscriptions#create'
+      patch '/customer/cancel', to: 'subscriptions#update'
     end
   end
 end

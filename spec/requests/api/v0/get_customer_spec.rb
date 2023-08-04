@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'test_helper'
 
-RSpec.describe 'One Customer', type: :request do
+RSpec.describe 'Get Customer', type: :request do
   describe 'GET /api/v0/customer' do
     before :all do
       customer_violet
@@ -13,7 +13,7 @@ RSpec.describe 'One Customer', type: :request do
       get "/api/v0/customers/#{@violet.id}", headers: headers
 
       customer = JSON.parse(response.body, symbolize_names: true)
-
+# require 'pry'; binding.pry
       expect(response).to be_successful
       expect(response.status).to eq(200)
 

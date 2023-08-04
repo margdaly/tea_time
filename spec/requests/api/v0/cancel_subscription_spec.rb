@@ -1,21 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe 'Cancel', type: :request do
-  describe 'PATCH /api/v0/customers/{id}/cancel' do
+RSpec.describe 'Cancel Subscription', type: :request do
+  let(:customer) { create(:customer) }
+  let(:tea) { create(:tea) }
+
+  describe 'PATCH /api/v0/customer/cancel' do
     it 'updates a subscription status to cancelled' do
-      customer = create(:customer)
-      tea = create(:tea)
       subscription = Subscription.create!(customer_id: customer.id, tea_id: tea.id)
 
-      subscription_params = ({
+      subscription_params = {
         customer_id: subscription.customer_id,
         tea_id: subscription.tea_id,
         status: 'cancelled'
-      })
+      }
 
-      headers = { 'CONTENT_TYPE' => 'application/json' }
+      headers = {
+        'CONTENT_TYPE' => 'application/json',
+        'HTTP_COOKIE' => "customer_id=#{customer.id}"
+      }
 
-      patch "/api/v0/customers/#{customer.id}/cancel", headers: headers, params: JSON.generate(subscription: subscription_params)
+      patch "/api/v0/customer/cancel", headers: headers, params: JSON.generate(subscription_params)
 
       updated_subscription = JSON.parse(response.body, symbolize_names: true)
 

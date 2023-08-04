@@ -1,5 +1,7 @@
 class Api::V0::SubscriptionsController < ApplicationController
-  before_action :check_subscription, only: %i[create update]
+  skip_before_action :verify_authenticity_token
+  # remove line above after development is complete
+  # before_action :verify_session, only: %i[create update]
 
   def create
     subscription = Subscription.new(subscription_params)
@@ -11,6 +13,7 @@ class Api::V0::SubscriptionsController < ApplicationController
   end
 
   def update
+    @subscription = Subscription.find_by(customer_id: params[:customer_id], tea_id: params[:tea_id])
     @subscription.update(subscription_params)
 
     render json: SubscriptionSerializer.new(@subscription), status: 200
@@ -19,10 +22,6 @@ class Api::V0::SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:status, :frequency, :customer_id, :tea_id)
-  end
-
-  def check_subscription
-    @subscription = Subscription.find_by(customer_id: params[:subscription][:customer_id], tea_id: params[:subscription][:tea_id])
+    params.permit(:status, :frequency, :customer_id, :tea_id)
   end
 end

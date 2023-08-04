@@ -18,4 +18,4 @@ Response Headers:
 
 | Name | Type | Example | Description |
 | ----------- | ----------- | ----------- | ----------- | 
-| **id** | number| | 3 | customer's id |
+| **id** | number | 3 | customer's id |

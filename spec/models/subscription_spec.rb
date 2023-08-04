@@ -21,7 +21,7 @@ RSpec.describe Subscription, type: :model do
       expect(@subscription.status).to eq('active')
     end
 
-    it 'defaults frequency to monthly' do
+    it 'defaults frequency to monthly enum 1' do
       expect(@subscription.frequency).to eq('monthly')
     end
 
