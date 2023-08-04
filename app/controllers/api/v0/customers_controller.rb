@@ -8,9 +8,4 @@ class Api::V0::CustomersController < ApplicationController
     render json: CustomerSerializer.new(customer)
   end
 
-  # private
-
-  # def customer_params
-  #   params.permit(:email)
-  # end
 end
