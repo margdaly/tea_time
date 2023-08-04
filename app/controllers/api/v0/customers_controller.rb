@@ -4,14 +4,13 @@ class Api::V0::CustomersController < ApplicationController
   # before_action :verify_session, only: %i[show]
 
   def show
-    # require 'pry'; binding.pry
-    customer = Customer.find(email: params[:email])
+    customer = Customer.find(params[:id])
     render json: CustomerSerializer.new(customer)
   end
 
-  private
+  # private
 
-  def customer_params
-    params.require(:customer).permit(:email)
-  end
+  # def customer_params
+  #   params.permit(:email)
+  # end
 end

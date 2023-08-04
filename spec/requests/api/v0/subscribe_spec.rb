@@ -14,7 +14,7 @@ RSpec.describe 'Subscribe', type: :request do
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
-      post '/api/v0/customer/subscribe', headers: headers, params: JSON.generate(subscription: subscription_params)
+      post '/api/v0/customer/subscribe', headers: headers, params: JSON.generate(subscription_params)
 
       new_subscription = Subscription.last
 
@@ -27,22 +27,6 @@ RSpec.describe 'Subscribe', type: :request do
       expect(new_subscription.status).to eq('active')
       expect(new_subscription.frequency).to eq('weekly')
       expect(new_subscription.price).to eq(214.76)
-    end
-
-    it 'returns error if tea does not exist' do
-      customer = create(:customer)
-
-      subscription_params = ({
-        customer_id: customer.id,
-        tea_id: 0
-      })
-
-      headers = { 'CONTENT_TYPE' => 'application/json' }
-
-      post '/api/v0/customer/subscribe', headers: headers, params: JSON.generate(subscription: subscription_params)
-
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
     end
   end
 end

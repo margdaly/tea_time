@@ -8,16 +8,12 @@ RSpec.describe 'Get Customer', type: :request do
     end
 
     it 'returns a customer and their subscriptions' do
-      customer_params = {
-        email: @violet.email
-      }
-
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
-      get '/api/v0/customer', headers: headers, params: JSON.generate(customer: customer_params)
+      get "/api/v0/customers/#{@violet.id}", headers: headers
 
       customer = JSON.parse(response.body, symbolize_names: true)
-require 'pry'; binding.pry
+# require 'pry'; binding.pry
       expect(response).to be_successful
       expect(response.status).to eq(200)
 

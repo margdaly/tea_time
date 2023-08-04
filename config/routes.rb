@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     namespace :v0 do
       post 'sessions/create'
       delete 'sessions/destroy'
-
-      get '/customer', to: 'customers#show'
+      resources :customers, only: [:show]
+      # get '/customer/:id', to: 'customers#show'
       post '/customer/subscribe', to: 'subscriptions#create'
       patch '/customer/cancel', to: 'subscriptions#update'
     end

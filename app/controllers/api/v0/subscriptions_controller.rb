@@ -13,7 +13,7 @@ class Api::V0::SubscriptionsController < ApplicationController
   end
 
   def update
-    @subscription = Subscription.find_by(customer_id: params[:subscription][:customer_id], tea_id: params[:subscription][:tea_id])
+    @subscription = Subscription.find_by(customer_id: params[:customer_id], tea_id: params[:tea_id])
     @subscription.update(subscription_params)
 
     render json: SubscriptionSerializer.new(@subscription), status: 200
@@ -22,6 +22,6 @@ class Api::V0::SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:status, :frequency, :customer_id, :tea_id)
+    params.permit(:status, :frequency, :customer_id, :tea_id)
   end
 end

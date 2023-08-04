@@ -8,7 +8,6 @@ RSpec.describe 'Cancel Subscription', type: :request do
     it 'updates a subscription status to cancelled' do
       subscription = Subscription.create!(customer_id: customer.id, tea_id: tea.id)
 
-      # session[:customer_id] = customer.id
       subscription_params = {
         customer_id: subscription.customer_id,
         tea_id: subscription.tea_id,
@@ -20,7 +19,7 @@ RSpec.describe 'Cancel Subscription', type: :request do
         'HTTP_COOKIE' => "customer_id=#{customer.id}"
       }
 
-      patch "/api/v0/customer/cancel", headers: headers, params: JSON.generate(subscription: subscription_params)
+      patch "/api/v0/customer/cancel", headers: headers, params: JSON.generate(subscription_params)
 
       updated_subscription = JSON.parse(response.body, symbolize_names: true)
 
