@@ -41,6 +41,7 @@ gem "bootsnap", require: false
 
 gem 'email_address'
 gem 'jsonapi-serializer'
+gem 'jwt'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -70,3 +71,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "rack-cors", "~> 2.0"

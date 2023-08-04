@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Subscribe', type: :request do
-  describe 'POST /api/v0/customers/{id}/subscribe' do
+  describe 'POST /api/v0/customer/subscribe' do
     it 'creates a subscription for a customer' do
       customer = create(:customer)
       tea = create(:tea)
 
-      subscription_params = ({
+      subscription_params = {
         customer_id: customer.id,
         tea_id: tea.id,
         frequency: 'weekly'
-      })
+      }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
-      post "/api/v0/customers/#{customer.id}/subscribe", headers: headers, params: JSON.generate(subscription: subscription_params)
+      post '/api/v0/customer/subscribe', headers: headers, params: JSON.generate(subscription: subscription_params)
 
       new_subscription = Subscription.last
 
@@ -39,7 +39,7 @@ RSpec.describe 'Subscribe', type: :request do
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
-      post "/api/v0/customers/#{customer.id}/subscribe", headers: headers, params: JSON.generate(subscription: subscription_params)
+      post '/api/v0/customer/subscribe', headers: headers, params: JSON.generate(subscription: subscription_params)
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
